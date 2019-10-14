@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Role;
+
 class RoleTableSeeder extends Seeder
 {
   public function run()
@@ -20,7 +21,5 @@ class RoleTableSeeder extends Seeder
     $role_admin->name = 'admin';
     $role_admin->description = 'Pengolah Dashboard';
     $role_admin->save();
-
-
   }
 }
