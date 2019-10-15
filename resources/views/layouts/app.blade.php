@@ -43,7 +43,9 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+      @guest
       <!-- Messages Dropdown Menu -->
+      @else
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
           <img src="{{ asset ('admLte/dist/img/user2-160x160.jpg') }}" class="user-image img-circle elevation-2" alt="User Image">
@@ -64,10 +66,21 @@
           <!-- Menu Footer-->
           <li class="user-footer">
             <a href="#" class="btn btn-default btn-flat">Profile</a>
-            <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right">Sign out</a>
+            <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-right"
+              onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">
+
+               {{ __('Logout') }}</a>
+
+               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+
+                @csrf
+
+            </form>
           </li>
         </ul>
       </li>
+      @endguest
     </ul>
   </nav>
   <!-- /.navbar -->
