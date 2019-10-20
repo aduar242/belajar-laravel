@@ -6,6 +6,8 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title') | {{ config('app.name', 'Laravel') }}</title>
+
+  {{-- Modal --}}
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ asset('admLte/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- overlayScrollbars -->
@@ -16,6 +18,9 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  {{-- Modal bambang --}}
+  
+  {{-- End Modal bambang --}}
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -186,6 +191,15 @@
   </footer>
 </div>
 <!-- ./wrapper -->
+
+{{-- modal bossq --}}
+<script>
+    $(document).on('click','.deleteUser',function(){
+        var userID=$(this).attr('data-userid');
+        $('#app_id').val(userID); 
+        $('#applicantDeleteModal').modal('show'); 
+    });
+    </script>
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->

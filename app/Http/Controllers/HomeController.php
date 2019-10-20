@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,6 +12,7 @@ class HomeController extends Controller
      *
      * @return void
      */
+    // pengecekan autotentifikasi
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,8 +25,9 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $product = Product::count();
         $request->user()->authorizeRoles(['employee', 'manager', 'admin']);
-        return view('home');
+        return view('home', compact('product'));
     }
 
     /*

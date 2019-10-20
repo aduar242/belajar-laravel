@@ -1,6 +1,7 @@
 @extends('layouts.app')
+@include('layouts._modal')
 @section('title')
-Halaman Product    
+Halaman Product
 @endsection
 @section('content')
 <div class="content-wrapper">
@@ -39,62 +40,49 @@ Halaman Product
                     <th style="width: 10px">No</th>
                     <th>Nama produk</th>
                     <th>Deskripsi</th>
-                    <th></th>
+                    <th>Tanggal pembuatan</th>
+                    <th>Tanggal perbarui</th>
+                    <th style="width: 10px">Action</th>
                   </tr> 
                 </thead>
                 <tbody>
                     @foreach($products as $product)
                   <tr>
                     <td>{{$product->id}}</td>
-                    <td><a href ="{{route('product.show', $product->id)}}">
-                        {{$product->judul}}</a></td>
+                    <td>{{$product->judul}}</td>
                     <td>{!!$product->deskripsi!!}</td>
+                    <td>{{$product->created_at}}</td>
+                    @if(count($products)> 0)
+                    <td>data belum di update</td>
+                    @else
+                    <td>{{$product->update_at}}</td>
+                    @endif
                     <td class="text-right py-0 align-middle">
                       <div class="btn-group btn-group-sm">
-                        <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                        <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                          <a target="_blank" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete" href="">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                          <a target="_blank" href="{{ route('product.show', $product->id) }}" 
+                              class="btn btn-primary btn-sm">
+                              <i class="fa fa-eye"></i>
+                          </a>
+                          <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning btn-sm">
+                              <i class="fa fa-edit"></i>
+                          </a>
+                          </button>
                       </div>
                     </td>
                   </tr>
+                  <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                    
+                      <!-- Modal content-->
+                      
+                      
+                    </div>
+                  </div>  
                   @endforeach
-                  <tr>
-                    <td>UAT.pdf</td>
-                    <td>28.4883 kb</td>
-                    <td class="text-right py-0 align-middle">
-                      <div class="btn-group btn-group-sm">
-                        <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                        <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                      </div>
-                    </td>
-                  </tr><tr>
-                    <td>Email-from-flatbal.mln</td>
-                    <td>57.9003 kb</td>
-                    <td class="text-right py-0 align-middle">
-                      <div class="btn-group btn-group-sm">
-                        <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                        <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                      </div>
-                    </td>
-                  </tr><tr>
-                    <td>Logo.png</td>
-                    <td>50.5190 kb</td>
-                    <td class="text-right py-0 align-middle">
-                      <div class="btn-group btn-group-sm">
-                        <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                        <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                      </div>
-                    </td>
-                  </tr><tr>
-                    <td>Contract-10_12_2014.docx</td>
-                    <td>44.9715 kb</td>
-                    <td class="text-right py-0 align-middle">
-                      <div class="btn-group btn-group-sm">
-                        <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                        <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                      </div>
-                    </td>
-
-                </tr></tbody>
+                </tbody>
               </table>
             </div>
             <!-- /.card-body -->
@@ -107,28 +95,6 @@ Halaman Product
             <br>
           <button type="button" class="btn btn-block btn-outline-success">Tambah Produk</button>
           </a>
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-              <i class="fas fa-minus"></i></button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fas fa-times"></i></button>
-          </div>
-        </div>
-        <div class="card-body">
-            @if(count($products)>0)
-            <ol>
-
-                @foreach($products as $product)
-                <li><a href ="{{route('product.show', $product->id)}}">
-                        {{$product->judul}}</a>
-                        <br>
-                        <div>{!!$product->deskripsi!!}</div>
-                        @endforeach
-                    </li>
-                </ol>
-            @else
-            <div>data tidak ditemukan</div>
-            @endif
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
