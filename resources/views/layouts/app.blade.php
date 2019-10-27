@@ -174,7 +174,7 @@
   @yield('content')
   
   <!-- /.content-wrapper -->
-
+  {{-- Penampung section content --}}
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -191,6 +191,7 @@
   </footer>
 </div>
 <!-- ./wrapper -->
+
 
 {{-- modal bossq --}}
 <script>

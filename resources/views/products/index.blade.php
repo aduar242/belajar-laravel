@@ -66,7 +66,7 @@ Halaman Product
                               class="btn btn-primary btn-sm">
                               <i class="fa fa-eye"></i>
                           </a>
-                          <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning btn-sm">
+                          <a target="_blank" href="{{ route('product.edit', $product->id) }}" class="btn btn-warning btn-sm">
                               <i class="fa fa-edit"></i>
                           </a>
                           </button>
